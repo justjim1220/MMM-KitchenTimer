@@ -29,7 +29,7 @@ Module.register("MMM-KitchenTimer", {
 
 	// Define required scripts.
 	getScripts: function() {
-		return ["https://code.jquery.com/jquery-3.3.1.js"];
+		return ["jquery.js"];
 	},
 
 	// Define styles.
