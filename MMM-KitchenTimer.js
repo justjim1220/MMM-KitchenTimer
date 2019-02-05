@@ -48,11 +48,6 @@ Module.register("MMM-KitchenTimer", {
 		var timerWrapper = document.createElement("div");
 		timerWrapper.className = "timer";
 
-		var title = document.createElement("div");
-		title.className = "title";
-		title.innerHTML = "Kitchen Timer";
-		wrapper.appendChild(title);
-
 		var clock, start, length, end, x, now, remaining, minutes, seconds;
 		var pauseTime, pauseLength;
 		var checkRunning = 0;
