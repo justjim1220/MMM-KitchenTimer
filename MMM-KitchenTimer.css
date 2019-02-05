@@ -1,19 +1,13 @@
-@import url("https://db.onlinewebfonts.com/c/1467e2d37ec60cc50117a8db7c24f626?family=DS-Digital";
 @import url("https://fonts.googleapis.com/icon?family=Material+Icons");
 @import url("https://fonts.googleapis.com/css?family=Orbitron");
 
 .MMM-KitchenTimer {
-  padding-top: 150px;
-}
-
-.MMM-KitchenTimer .timer {
   color: #fff;
-  width: 450px;
-  font-family: DS-Digital;
+  width: 400px;
   position: relative;
-  height: 200px;
+  height: 175px;
   box-shadow: 0px 0px 2px #fff;
-  margin: 50px auto;
+  margin: 150px auto;
   border-radius: 75px;
   background-color: #222;
   border: 25px inset #444;
@@ -22,6 +16,9 @@
   align-items: center;
 }
 
+.material-icons.md-36 { 
+  font-size: 36px;
+}
 
 #more {
   color: green;
@@ -41,57 +38,62 @@
 
 #more:active {
   color: lightgreen;
+  border: none;
 }
 
 #less:active {
   color: coral;
+  border: none;
 }
 
-.MMM-KitchenTimer .bt1 {
-  height: 10px;
-  width: 30px;
-  font-size: 10px;
+.bt1 {
+  height: 30px;
+  width: 40px;
+  font-size: 36px;
   text-align: left;
   background-color: transparent;
   border: none;
-  vertical-align: center;
+  vertical-align: middle;
   display: inline-block;
 }
 
-.MMM-KitchenTimer .bt2 {
+.bt2 {
   height: 35px;
-  width: 60px;
+  width: 40px;
   font-size: 30px;
   text-align: center;
   align-content: center;
+  vertical-align: middle;
   background-color: darkcyan;
-  top: 50px;
 }
 
-.MMM-KitchenTimer .bt2:hover {
-  height: 40px;
-  width: 80px;
-  font-size: 10px;
+.bt2:hover {
+  height: 35px;
+  width: 40px;
+  font-size: 30px;
   background-color: cyan;
 }
 
-.MMM-KitchenTimer .bt2:active {
-  height: 40px;
-  width: 80px;
-  font-size: 10px;
+.bt2:active {
+  height: 35px;
+  width: 40px;
+  font-size: 30px;
 }
 
-.MMM-KitchenTimer .text-primary {
+.title {
   color: #fff;
-  font-size: 50px;
+  font-size: 45px;
+  line-height: 105%;
   font-weight: normal;
-  font-family: Orbitron;
+  font-family: "Orbitron";
+  padding-top: 15px;
 }
 
-#display {
+.display {
   color: #fff;
   font-size: 60px;
+  line-height: 105%;
   font-weight: normal;
-  font-family: Orbitron;
+  font-family: "Orbitron";
   z-index: 1;
 }

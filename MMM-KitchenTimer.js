@@ -22,7 +22,7 @@
 
 Module.register("MMM-KitchenTimer", {
 
-	sound: "TimerAlarm.mp3",
+	alarmSound: "TimerAlarm.mp3",
 
 	requiresVersion: "2.1.0",
 
@@ -42,11 +42,21 @@ Module.register("MMM-KitchenTimer", {
 		Log.info("Starting module: " + this.name);
 	},
 
-	getDom: function() {
+	getDom: function () {
 		var wrapper = document.createElement("div");
 
 		var timerWrapper = document.createElement("div");
-		timerWrapper.className = "timer";
+		timerWrapper.classList.add("medium");
+		timerWrapper.innerHTML = `<div class="timer">
+			<div class="title">Kitchen Timer</div>
+			<div class="display" id="display">00:00:00</div>
+			<button id="more" class="bt1"><i class="material-icons md-36">add_circle</i></button>
+			<button id="less" class="bt1"><i class="material-icons md-36">remove_circle</i></button>
+			&nbsp;&nbsp;
+			<button id="start" class="bt2"><i class="material-icons">play_arrow</i></button>
+			<button id="pause" class="bt2"><i class="material-icons">pause</i></button>
+			<button id="reset" class="bt2"><i class="material-icons">loop</i></button>
+		</div>`;
 
 		var clock, start, length, end, x, now, remaining, minutes, seconds;
 		var pauseTime, pauseLength;
@@ -59,86 +69,94 @@ Module.register("MMM-KitchenTimer", {
 
 		function display() {
 			$("#display").empty().html(clock + ":00");
-		};
+		}
 
 		$("#more").on("click", function() {
-			if (checkRunning == 0) {
+			if(checkRunning == 0) {
 				clock += 1;
 				display();
-			};
+			}
 		});
 
 		$("#less").on("click", function() {
-			if (clock > 1 && checkRunning == 0) {
+			if(clock > 1 && checkRunning == 0) {
 				clock -= 1;
 				display();
-			};
+			}
 		});
-
-		var sound = document.createElement("audio");
-		let srcSound = this.config.sound;
-		sound.src = srcSound;
-		sound.id = "MMM-KitchenTimer-Player";
-		sound.setAttribute("autoplay", true);
-		wrapper.appendChild(sound);
 
 		function a() {
 			x = setInterval(function() {
 				now = $.now();
 				remaining = end - now;
-				minutes = Math.floor((remaining % (1000 * 60 * 60)) / (1000 * 60));
-				seconds = Math.round((remaining % (1000 * 60)) / 1000);
-				if (seconds == 60) {
+				minutes = Math.floor((remaining % (1000 * 60 * 60))/(1000 * 60));
+				seconds = Math.round((remaining % (1000 * 60))/1000);
+				if(seconds == 60) {
 					document.getElementById("display").innerHTML = "1:00";
-				} else if (seconds < 10) {
+				} else if(seconds<10) {
 					document.getElementById("display").innerHTML = minutes + ":0" + seconds;
 				} else {
 					document.getElementById("display").innerHTML = minutes + ":" + seconds;
 				}
-				if (remaining < 0) {
-					document.querySelector(".js-timer").play();
+				if(remaining < 0) {
 					clearInterval(x);
+					
+					// Start alarm sound
+					this.playAlarmSound();
 					document.getElementById("display").innerHTML = "DONE!";
-				};
+				}
+			},1000)
+		}
 
-			}, 1000)
-		};
-
-		$("#start").on("click", function () {
-			if (isNaN(pauseTime) && checkRunning == 0) {
+		$("#start").on("click", function() {
+			if(isNaN(pauseTime) && checkRunning == 0) {
 				start = $.now();
 				length = clock * 60 * 1000;
 				end = start + length;
 				a();
 				checkRunning = 1;
-			} else if (checkRunning == 2) {
+			} else if(checkRunning == 2) {
 				start = $.now();
 				end = start + pauseLength;
 				a();
 				checkRunning = 1;
-			};
+			}
 		});
 
-		$("#pause").on("click", function () {
-			if (checkRunning == 1) {
-				document.querySelector(".js-timer").pause();
+		$("#pause").on("click", function() {
+			if(checkRunning == 1) {
 				pauseTime = $.now();
 				pauseLength = end - pauseTime;
 				clearInterval(x);
 				checkRunning = 2;
-			};
+				this.stopAlarmSound();
+			}
 		});
 
-		$("#reset").on("click", function () {
-			document.querySelector(".js-timer").pause();
+		$("#reset").on("click", function() {
 			clearInterval(x);
 			clock = 0;
-			display();
+			$("#display").html("00:00:00");
 			pauseTime = NaN;
-			checkRunning = 0
-		});
+			checkRunning = 0;
+			this.stopAlarmSound();
+		})
 
 		wrapper.appendChild(timerWrapper);
 		return wrapper;
 	},
+
+	//////////////////////////////////////////////////
+	playAlarmSound() {
+		const audio = document.createElement("audio");
+		let srcAudio = this.config.alarmSound;
+		audio.src = srcAudio;
+		audio.volume = this.config.volume;
+		audio.setAttribute('id', 'MMM-KitchenTimer-Player');
+		audio.setAttribute('autoplay', true);
+		audio.setAttribute('loop', true);
+		wrapper.appendChild(audio);
+	}
+	//////////////////////////////////////////////////
+
 });
