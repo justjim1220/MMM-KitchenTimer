@@ -26,6 +26,7 @@
 
 #less {
   color: red;
+  padding-right: 15px;
 }
 
 #more:hover {
@@ -34,6 +35,7 @@
 
 #less:hover {
   color: maroon;
+  padding-right: 15px;
 }
 
 #more:active {
@@ -44,11 +46,12 @@
 #less:active {
   color: coral;
   border: none;
+  padding-right: 15px;
 }
 
 .bt1 {
   height: 30px;
-  width: 40px;
+  width: 60px;
   font-size: 36px;
   text-align: left;
   background-color: transparent;
