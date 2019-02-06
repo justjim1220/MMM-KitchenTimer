@@ -25,8 +25,8 @@ modules: [
 ```
 cd ~/MagicMirror/modules
 git clone https://github.com/justjim1220/MMM-KitchenTimer.git
-cd MMM-BornBeforeDate
-npm install
+cd MMM-KitchenTimer
+npm i
 ```
 
 ## Configuration options
