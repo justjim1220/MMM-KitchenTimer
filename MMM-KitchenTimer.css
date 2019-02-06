@@ -13,7 +13,7 @@
   border: 25px inset #444;
   padding: 0;
   overflow: hidden;
-  align-items: center;
+  text-align: center;
 }
 
 .material-icons.md-36 { 
