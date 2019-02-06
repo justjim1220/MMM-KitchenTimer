@@ -12,9 +12,12 @@ To use this module, add it to the modules array in the `config/config.js` file:
 ````javascript
 modules: [
 	{
-    disabled: false,
-		module: "MMM-KitchenTimer",
-		position: "top_center",
+            disabled: false,
+	    module: "MMM-KitchenTimer",
+	    position: "top_center",
+	    config: {
+	        volume: 1
+	    }
 	},
 ]
 ````
@@ -29,3 +32,11 @@ npm install
 ## Configuration options
 
 changes for colors, sizes, and fonts can be made within the css file or your custom.css file
+
+========================================================================================================================================
+
+## Acknowledgements...
+
+@Seann & @sdetweil for giving me hints on tweaks to get it up and running right, and for teaching me how to get away from JQuery!!!
+
+Enjoy!
